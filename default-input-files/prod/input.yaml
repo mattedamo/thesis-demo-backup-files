@@ -1,0 +1,25 @@
+backend:
+- replicas: 1
+  type: deployment
+- port: 8080
+  type: service
+frontend:
+- replicas: 1
+  type: deployment
+- port: 80
+  type: service
+db:
+- type: deployment
+  secrets:
+  - MYSQL_ROOT_PASSWORD: default-password
+  - MYSQL_DATABASE: thesisAppMariadb 
+
+branch: master
+image:
+  frontend:
+    tag: custom
+  backend:
+    tag: custom-tag
+clusters: 
+  - in-cluster
+  - second-cluster
